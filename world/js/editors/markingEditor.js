@@ -14,7 +14,7 @@ class MarkingEditor {
     this.markings = world.markings;
   }
 
-  // to be overridden by subclasses
+  // to be overwritten
   createMarking(center, directionVector) {
     return center;
   }
@@ -35,6 +35,7 @@ class MarkingEditor {
     this.canvas.addEventListener("mousemove", this.boundMouseMove);
     this.canvas.addEventListener("contextmenu", this.boundContextMenu);
   }
+
   #removeEventListeners() {
     this.canvas.removeEventListener("mousedown", this.boundMouseDown);
     this.canvas.removeEventListener("mousemove", this.boundMouseMove);
@@ -48,7 +49,6 @@ class MarkingEditor {
       this.targetSegments,
       10 * this.viewport.zoom
     );
-
     if (seg) {
       const proj = seg.projectPoint(this.mouse);
       if (proj.offset >= 0 && proj.offset <= 1) {
@@ -60,17 +60,17 @@ class MarkingEditor {
       this.intent = null;
     }
   }
+
   #handleMouseDown(evt) {
     if (evt.button == 0) {
-      // Left click
+      // left click
       if (this.intent) {
         this.markings.push(this.intent);
         this.intent = null;
       }
     }
-
     if (evt.button == 2) {
-      // Right click
+      // right click
       for (let i = 0; i < this.markings.length; i++) {
         const poly = this.markings[i].poly;
         if (poly.containsPoint(this.mouse)) {

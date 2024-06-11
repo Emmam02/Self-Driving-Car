@@ -31,6 +31,7 @@ function distance(p1, p2) {
 function average(p1, p2) {
   return new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
 }
+
 function dot(p1, p2) {
   return p1.x * p2.x + p1.y * p2.y;
 }
@@ -97,6 +98,14 @@ function lerp(a, b, t) {
 
 function lerp2D(A, B, t) {
   return new Point(lerp(A.x, B.x, t), lerp(A.y, B.y, t));
+}
+
+function invLerp(a, b, v) {
+  return (v - a) / (b - a);
+}
+
+function degToRad(degree) {
+  return (degree * Math.PI) / 180;
 }
 
 function getRandomColor() {

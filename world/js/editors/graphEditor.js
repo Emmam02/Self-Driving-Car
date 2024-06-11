@@ -21,6 +21,7 @@ class GraphEditor {
     this.selected = false;
     this.hovered = false;
   }
+
   #addEventListeners() {
     this.boundMouseDown = this.#handleMouseDown.bind(this);
     this.boundMouseMove = this.#handleMouseMove.bind(this);
@@ -31,6 +32,7 @@ class GraphEditor {
     this.canvas.addEventListener("mouseup", this.boundMouseUp);
     this.canvas.addEventListener("contextmenu", this.boundContextMenu);
   }
+
   #removeEventListeners() {
     this.canvas.removeEventListener("mousedown", this.boundMouseDown);
     this.canvas.removeEventListener("mousemove", this.boundMouseMove);
@@ -45,14 +47,15 @@ class GraphEditor {
       this.graph.points,
       10 * this.viewport.zoom
     );
-    if (this.dragging) {
+    if (this.dragging == true) {
       this.selected.x = this.mouse.x;
       this.selected.y = this.mouse.y;
     }
   }
+
   #handleMouseDown(evt) {
     if (evt.button == 2) {
-      //right click
+      // right click
       if (this.selected) {
         this.selected = null;
       } else if (this.hovered) {
@@ -60,7 +63,7 @@ class GraphEditor {
       }
     }
     if (evt.button == 0) {
-      //left click
+      // left click
       if (this.hovered) {
         this.#select(this.hovered);
         this.dragging = true;
@@ -92,6 +95,7 @@ class GraphEditor {
     this.selected = null;
     this.hovered = null;
   }
+
   display() {
     this.graph.draw(this.ctx);
     if (this.hovered) {

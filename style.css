@@ -26,8 +26,11 @@ button:hover {
   background-color: red;
 }
 #carCanvas {
-  background: lightgray;
+  background: #2a5;
 }
 #networkCanvas {
+  background: black;
+}
+#miniMapCanvas {
   background: black;
 }
