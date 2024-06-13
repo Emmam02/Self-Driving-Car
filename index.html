@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Virtual Car</title>
+    <title>Self-driving car</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
       <button onclick="save()">💾</button>
-      <button class="discardBtn" onclick="discard()">🗑️</button>
+      <button onclick="discard()">🗑️</button>
     </div>
+
     <div>
       <canvas id="networkCanvas"></canvas>
       <canvas id="miniMapCanvas"></canvas>
     </div>
 
-    <script src="world/js/viewport.js"></script>
     <script src="world/js/world.js"></script>
+    <script src="world/js/viewport.js"></script>
     <script src="world/js/markings/marking.js"></script>
     <script src="world/js/markings/stop.js"></script>
     <script src="world/js/markings/start.js"></script>
@@ -42,7 +43,12 @@
     <script src="world/js/primitives/segment.js"></script>
     <script src="world/js/primitives/polygon.js"></script>
     <script src="world/js/primitives/envelope.js"></script>
-    <script src="world/saves/kbg.world"></script>
+
+    <!--<script src="world/saves/kbg.world"></script>-->
+    <!--<script src="world/saves/big_with_target.world"></script>-->
+    <script src="world/saves/path_finding.world"></script>
+
+    <script src="saves/right_hand_rule.car"></script>
 
     <script src="miniMap.js"></script>
     <script src="visualizer.js"></script>
