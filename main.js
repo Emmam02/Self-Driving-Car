@@ -22,21 +22,28 @@ const world = worldInfo
 const viewport = new Viewport(carCanvas, world.zoom, world.offset);
 const miniMap = new MiniMap(miniMapCanvas, world.graph, 300);
 
-const N = 100;
+const N = 1;
 const cars = generateCars(N);
 let bestCar = cars[0];
 if (localStorage.getItem("bestBrain")) {
   for (let i = 0; i < cars.length; i++) {
     cars[i].brain = JSON.parse(localStorage.getItem("bestBrain"));
     if (i != 0) {
-      NeuralNetwork.mutate(cars[i].brain, 0.2);
+      NeuralNetwork.mutate(cars[i].brain, 0.1);
     }
   }
 }
 
 const traffic = [];
-const roadBorders = world.roadBorders.map((s) => [s.p1, s.p2]);
 
+let roadBorders = [];
+const target = world.markings.find((m) => m instanceof Target);
+if (target) {
+  world.generateCorridor(bestCar, target.center);
+  roadBorders = world.corridor.map((s) => [s.p1, s.p2]);
+} else {
+  roadBorders = world.roadBorders.map((s) => [s.p1, s.p2]);
+}
 animate();
 
 function save() {
